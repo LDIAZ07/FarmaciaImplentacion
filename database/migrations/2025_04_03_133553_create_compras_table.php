@@ -16,8 +16,10 @@ return new class extends Migration
             // - "ForeignId()" crea una columna clave foranea.
             // - "->constrained()" Agrega una restriccion de clave foranea, Laravel asume que proveedor_id hace referencia a la columna id en la tabla proveedors.
             // - "->onDelete('cascade')" Si un proveedor es eliminado, todos los productos asociados también se eliminarán automáticamente.
+            $table->foreignId('id_medicamento')->constrained('medicamentos')->onDelete('cascade');
             $table->foreignId('id_proveedor')->constrained('proveedores')->onDelete('cascade');
-            $table->float('total');
+            $table->integer('cantidad');
+            $table->float('precio_unitario');
             $table->timestamps();
         });
     }
