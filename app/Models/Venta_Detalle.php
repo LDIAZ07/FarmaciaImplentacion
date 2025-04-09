@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Venta_Detalle extends Model
 {
+    protected $table = 'venta_detalles';
     //
     public function venta(){
         return $this->belongsTo(Venta::class, 'id_venta');

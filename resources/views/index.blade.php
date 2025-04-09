@@ -11,6 +11,8 @@
     <nav>
         <ul>
             <li><a href="/proveedor">Proveedores</a></li>
+            <li><a href="/ventas">Ventas</a></li>
+            <li><a href="/listaVentas">Lista Ventas</a></li>
             <li><a href="/medicamentos">Medicamentos</a></li>
             <li><a href="/visitas">Visitas</a></li>
             <li><a href="/vulnerabilidades">Vulnerabilidades</a></li>
