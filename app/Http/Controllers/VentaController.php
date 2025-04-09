@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Medicamento;
+use App\Models\Venta;
+use App\Models\Venta_Detalle;
 
 class VentaController extends Controller
 {
@@ -12,7 +15,8 @@ class VentaController extends Controller
     public function index()
     {
         //
-        return view('ventas');
+        $listaMedicamentos = Medicamento::all();
+        return view('ventas.ventas')->with('lMedicamentos', $listaMedicamentos);
     }
 
     /**
@@ -29,6 +33,28 @@ class VentaController extends Controller
     public function store(Request $request)
     {
         //
+        $medicamentoId = $request->get('medicamento_id');
+        $medicamento = Medicamento::find($medicamentoId);
+        $medicamento->stock_actual = $request->get('stock_restante');
+        $medicamento->save();
+
+        $venta = new Venta();
+        $venta->total = $request->get('total');
+        $venta->metodo_pago = $request->get('metodoPago');
+        $venta->save();
+
+        $venta_detalle = new Venta_Detalle();
+        $venta_detalle->id_venta = $venta->id;
+        $venta_detalle->id_medicamento = $request->get('medicamento_id');
+        $venta_detalle->cantidad = $request->get('cantidad');
+        $venta_detalle->precio_unitario = $request->get('precio');
+        $venta_detalle->save();
+
+        session()->flash('success', 'Venta realizada exitosamente.');
+
+        // session()->flash('error', 'Hubo un error al procesar la venta.');
+
+        return redirect()->back();
     }
 
     /**
