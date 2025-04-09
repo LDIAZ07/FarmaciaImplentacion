@@ -11,7 +11,7 @@
     <nav>
         <ul>
             <li><a href="/proveedor">Proveedores</a></li>
-            <li><a href="/habitats">Habitats</a></li>
+            <li><a href="/medicamentos">Medicamentos</a></li>
             <li><a href="/visitas">Visitas</a></li>
             <li><a href="/vulnerabilidades">Vulnerabilidades</a></li>
         </ul>
