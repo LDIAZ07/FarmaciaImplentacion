@@ -18,7 +18,7 @@
                 <td>Nombre del Proveedor</td>
                 <td>Telefono</td>
                 <td>Correo electronico</td>
-                <td>Creado en</td>
+                <!-- <td>Creado en</td> -->
             </tr>
         </thead>
 
@@ -30,7 +30,7 @@
                     <td>{{$proveedores->nombre}}</td>
                     <td>{{$proveedores->telefono}}</td>
                     <td>{{$proveedores->email}}</td>
-                    <td>{{$proveedores->creado_en}}</td>
+                    <!-- <td>{{$proveedores->creado_en}}</td> -->
                     </tr>
                    
 
