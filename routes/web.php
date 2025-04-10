@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('login.login');
 });
 
 Route::get('/farmacia', function () {
@@ -18,5 +19,7 @@ Route::get('/proveedorEliminar/{x}', 'App\Http\Controllers\ProveedoresController
 Route::get('/agregarProveedores', 'App\Http\Controllers\ProveedoresController@create');
 Route::get('/guardarMedicamento', 'App\Http\Controllers\MedicamentosController@create');
 
+// Route::resource('/login', 'App\Http\Controllers\UsuarioController');
+Route::post('/login', [App\Http\Controllers\UsuarioController::class, 'login'])->name('login');
 Route::resource('/ventas', 'App\Http\Controllers\VentaController');
 Route::resource('/devolucion', 'App\Http\Controllers\DevolucionController');
