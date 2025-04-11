@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Compra extends Model
 {
-    public function detalle_compras(){
-        // Define una relacion uno a muchos
-        return $this->hasMany(Compra_Detalle::class);
-    }
+    // public function detalle_compras(){
+    //     // Define una relacion uno a muchos
+    //     return $this->hasMany(Compra_Detalle::class);
+    // }
 
     //
     public function proovedor(){
@@ -17,5 +17,9 @@ class Compra extends Model
         // - Laravel asume que la clave foránea en la tabla actual es proveedor_id (siguiendo la convención de nombres).
         // - Si la clave foránea tuviera otro nombre, deberías especificarlo:
         // return $this->belongsTo(Proveedor::class, 'id_proveedor');
+    }
+
+    public function medicamento(){
+        return $this->belongsTo(Medicamento::class, 'id_medicamento');
     }
 }

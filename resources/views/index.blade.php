@@ -12,6 +12,7 @@
         <ul>
             <li><a href="/proveedor">Proveedores</a></li>
             <li><a href="/ventas">Ventas</a></li>
+            <li><a href="/compras">Compras</a></li>
             <li><a href="/listaVentas">Lista Ventas</a></li>
             <li><a href="/medicamentos">Medicamentos</a></li>
         </ul>
