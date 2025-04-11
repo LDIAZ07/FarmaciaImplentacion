@@ -24,3 +24,8 @@ Route::post('/login', [App\Http\Controllers\UsuarioController::class, 'login'])-
 Route::resource('/ventas', 'App\Http\Controllers\VentaController');
 Route::resource('/compras', 'App\Http\Controllers\ComprasController');
 Route::resource('/devolucion', 'App\Http\Controllers\DevolucionController');
+
+
+Route::get('/farmacia', function () {
+    return view('index');
+});
