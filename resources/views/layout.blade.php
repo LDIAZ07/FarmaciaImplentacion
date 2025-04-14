@@ -356,6 +356,9 @@
         .btn-lateral-compras:hover {
             background-color: #4d4d4d;
         }
+        .table {
+            border: 1;
+        }
 
     </style>
 </head>
@@ -369,8 +372,10 @@
         <form action="/proveedor"><button>Proveedores</button></form>
         <form action="/compras"><button>Compras</button></form>
         <form action="/ventas"><button>Ventas</button></form>
-        <form action="/devolucion"><button>Devoluciones</button></form>
-        <!--<form action="/inventario"><button>Inventario</button></form>--> 
+        <form action="/listaVentas"><button>Lista Ventas</button></form>
+        <form action="/listaCompras"><button>Lista Compras</button></form>
+        <!-- <form action="/devolucion"><button>Devoluciones</button></form> -->
+        <!--<form action="/inventario"><button>Inventario</button></form->--> 
     </div>
 
     <div class="content">

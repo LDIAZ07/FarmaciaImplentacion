@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla Ventas</title>
-</head>
-<body>
+@extends('layout')
+
+@section('contenido')
 
 @foreach ($ventas as $venta)
     <h3>Venta Cod: #{{ $venta->id }}</h3>
     <p>Método de pago: {{ $venta->metodo_pago }} | Total: ${{ $venta->total }}</p>
 
-    <table border="1" cellpadding="5" cellspacing="0">
+    <table border="1" class="tabla-proveedores" cellpadding="5" cellspacing="0">
         <thead>
             <tr>
                 <th>Medicamento</th>
@@ -34,6 +29,5 @@
     </table>
     <br>
 @endforeach
-    
-</body>
-</html>
+
+@endsection

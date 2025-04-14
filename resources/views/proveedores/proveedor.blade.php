@@ -5,7 +5,7 @@
 
     <form action="/agregarProveedores" method="GET" class="formulario-proveedor-simple">
         <input type="text" name="nombre" placeholder="Nombre del proveedor">
-        <input type="email" name="correo" placeholder="Correo electrónico">
+        <input type="email" name="email" placeholder="Correo electrónico">
         <input type="text" name="telefono" placeholder="Teléfono">
         <button type="submit">Agregar</button>
     </form>

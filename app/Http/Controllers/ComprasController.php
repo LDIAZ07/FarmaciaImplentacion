@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Compra;
+use App\Models\Proveedor;
 
 class ComprasController extends Controller
 {
@@ -13,8 +14,9 @@ class ComprasController extends Controller
     public function index()
     {
         //
+        $lProveedor = Proveedor::all();
         $compras = Compra::with(['medicamento', 'proovedor'])->get();
-        return view('compras.compras', compact('compras'));
+        return view('compras.compras', compact('compras'), compact('lProveedor'));
     }
 
     /**
@@ -36,9 +38,11 @@ class ComprasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
         //
+        $compras = Compra::with(['medicamento', 'proovedor'])->get();
+        return view('compras.comprastabla', compact('compras'));
     }
 
     /**
