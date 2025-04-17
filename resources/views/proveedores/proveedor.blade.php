@@ -26,8 +26,8 @@
                     <td>{{ $proveedores->email }}</td>
                     <td>{{ $proveedores->telefono }}</td>
                     <td>
-                        <button class="accion-btn">✏️</button>
-                        <button class="accion-btn">🗑️</button>
+                        <button onclick="window.location.href='/editarProveedores/{{ $proveedores->id }}'" class="accion-btn">✏️</button>
+                        <button onclick="window.location.href='/proveedorEliminar/{{ $proveedores->id }}'" class="accion-btn">🗑️</button>
                     </td>
                 </tr>
             @endforeach

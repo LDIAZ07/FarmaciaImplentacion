@@ -153,7 +153,7 @@
     <button type="submit" class="boton-comprar">Comprar</button>
 </form> -->
 
-<button class="btn-lateral-compras">Comprar Producto Existente</button>
+<!-- <button class="btn-lateral-compras">Comprar Producto Existente</button> -->
 
 <hr>
 

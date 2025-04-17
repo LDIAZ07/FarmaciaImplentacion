@@ -14,7 +14,7 @@ class VentaDetallesController extends Controller
     public function index()
     {
         //
-        $ventas = Venta::with('detalles_venta.medicamento')->get(); 
+        $ventas = Venta::with(['detalles_venta.medicamento', 'devoluciones'])->get(); 
         return view('ventas.ventastabla', compact('ventas'));
     }
 

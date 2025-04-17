@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicamentos</title>
-</head>
-<body>
+@extends('layout')
+
+@section('contenido')
 
     <h1>Medicamentos</h1>
 
-    <h3><a href="/guardarMedicamento">Guardar Nuevo Medicamento</a></h3>
+    <!-- <h3><a href="/guardarMedicamento">Guardar Nuevo Medicamento</a></h3> -->
 
-    <table border="1">
+    <table class="table tabla-proveedores">
         <thead>
             <tr>
-                <td>Id</td>
-                <td>Nombre del Medicamento</td>
-                <td>Principio activo</td>
-                <td>Presentacion</td>
-                <td>Stock Actual</td>
-                <td>Stock Minimo</td>
-                <td>Precio</td>
-                <td>Fecha de Vencimiento</td>
+                <th>Id</th>
+                <th>Nombre del Medicamento</th>
+                <th>Principio activo</th>
+                <th>Presentacion</th>
+                <th>Stock Actual</th>
+                <th>Stock Minimo</th>
+                <th>Precio</th>
+                <th>Fecha de Vencimiento</th>
             </tr>
         </thead>
 
@@ -33,7 +28,11 @@
                     <td>{{$medicamentos->nombre}}</td>
                     <td>{{$medicamentos->principio_activo}}</td>
                     <td>{{$medicamentos->presentacion}}</td>
-                    <td>{{$medicamentos->stock_actual}}</td>
+                    @if ((int) $medicamentos->stock_actual <= 7)
+                        <td style="color: red;"><b>{{$medicamentos->stock_actual}}</b></td>
+                    @else
+                        <td>{{$medicamentos->stock_actual}}</td>
+                    @endif
                     <td>{{$medicamentos->stock_minimo}}</td>
                     <td>{{$medicamentos->precio}}</td>
                     <td>{{$medicamentos->fecha_vencimiento}}</td>
@@ -44,6 +43,14 @@
 
         </tbody>
     </table>
+
+    <script>
+        window.addEventListener('load', () => {
+            const stock = parseInt(document.getElementById('stock'));
+            if(stock < 7){
+
+            }
+        });
+    </script>
     
-</body>
-</html>
+@endsection

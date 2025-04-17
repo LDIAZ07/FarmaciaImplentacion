@@ -36,9 +36,10 @@ class DevolucionController extends Controller
         $devolucion->motivo = $request->get('motivo');
         $devolucion->save();
 
-        session()->flash('success', 'Venta realizada exitosamente.');
+        session()->flash('success', 'Devuelto');
 
         return redirect()->back();
+        return view('ventas.ventasTabla');
     }
 
     /**

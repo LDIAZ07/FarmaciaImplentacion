@@ -374,6 +374,7 @@
         <form action="/ventas"><button>Ventas</button></form>
         <form action="/listaVentas"><button>Lista Ventas</button></form>
         <form action="/listaCompras"><button>Lista Compras</button></form>
+        <form action="/medicamentos"><button>Inventario</button></form>
         <!-- <form action="/devolucion"><button>Devoluciones</button></form> -->
         <!--<form action="/inventario"><button>Inventario</button></form->--> 
     </div>

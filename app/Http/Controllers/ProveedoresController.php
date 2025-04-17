@@ -43,7 +43,7 @@ class ProveedoresController extends Controller
     public function edit(string $id)
     {
         $proveedores = Proveedor::find($id); 
-        return view('proveedor.editarProveedores')->with('proveedor', $proveedores);
+        return view('proveedores.editarProveedor')->with('proveedores', $proveedores);
     }
 
 
@@ -53,8 +53,9 @@ class ProveedoresController extends Controller
         $proveedores->nombre = $request->get('nombre');
         $proveedores->telefono = $request->get('telefono');
         $proveedores->email = $request->get('email');
-        $proveedores->creado_en = $request->get('creado_en');
+        // $proveedores->creado_en = $request->get('creado_en');
         $proveedores->save();
+        return redirect('/proveedor');
     }
 
 
@@ -62,6 +63,6 @@ class ProveedoresController extends Controller
     {
         $eliminar = Proveedor::find($id);
         $eliminar->delete();
-        return redirect('/farmacia');
+        return redirect('/proveedor');
     }
 }

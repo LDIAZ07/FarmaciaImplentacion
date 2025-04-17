@@ -15,6 +15,6 @@ class Venta extends Model
 
     public function devoluciones(){
         // Define una relacion uno a muchos
-        return $this->hasMany(Devolucion::class);
+        return $this->hasMany(Devolucion::class, 'id_venta');
     }
 }
