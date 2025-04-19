@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Proveedor;
+use App\Models\User;
+use App\Models\Devolucion;
+use App\Models\Venta;
+use App\Models\Compra;
+use App\Models\Medicamento;
 
 Route::get('/', function () {
     // return view('welcome');
@@ -30,5 +36,18 @@ Route::resource('/devolucion', 'App\Http\Controllers\DevolucionController');
 
 
 Route::get('/farmacia', function () {
-    return view('index');
+    $totalProveedores = Proveedor::count();
+    $totalUsuarios = User::count();
+    $totalDevoluciones = Devolucion::count();
+    $totalVentas = Venta::count();
+    $totalCompras = Compra::count();
+    $totalMedicamentos = Medicamento::count();
+    return view('index', compact(
+        'totalProveedores',
+        'totalUsuarios',
+        'totalDevoluciones',
+        'totalVentas',
+        'totalCompras',
+        'totalMedicamentos'
+    ));
 });

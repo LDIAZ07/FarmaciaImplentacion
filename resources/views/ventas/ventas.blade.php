@@ -1,6 +1,8 @@
 @extends('layout')
 
 @section('contenido')
+
+<h2>Realizar Venta</h2>
     <div class="formulario-container-ventas">
         <form action="/ventas" method="post">
             @csrf
@@ -23,7 +25,9 @@
             <div class="formulario-ventas">
                 <label for="">Cantidad</label>
                 <input type="number" min="1" max="20" name="cantidad" id="cantidad" value="1" disabled>
+            </div>
 
+            <div class="formulario-ventas">
                 <label for="">Precio</label>
                 <input type="text" name="precio" id="precio" readonly>
             </div>
@@ -34,7 +38,9 @@
                     <option value="tarjeta">Tarjeta</option>
                     <option value="efectivo">Efectivo</option>
                 </select>
+            </div>
 
+            <div class="formulario-ventas">
                 <label for="">Total</label>
                 <input type="text" name="total" id="total" readonly>
             </div>

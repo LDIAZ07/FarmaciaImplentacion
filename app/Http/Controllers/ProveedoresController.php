@@ -30,7 +30,11 @@ class ProveedoresController extends Controller
         $proveedores->email = $request->get('email');
         // $proveedores->creado_en = $request->get('creado_en');
         $proveedores->save();
-        return redirect('/farmacia');
+
+        session()->flash('success', 'Proveedor agregado correctamente.');
+        return redirect()->back();
+
+        // return redirect('/farmacia');
     }
 
   

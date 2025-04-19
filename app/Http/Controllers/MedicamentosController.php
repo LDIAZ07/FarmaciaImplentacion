@@ -52,8 +52,10 @@ class MedicamentosController extends Controller
         $compra->cantidad = $request->get('cantidad');
         $compra->precio_unitario = $request->get('precio');
         $compra->save();
+        session()->flash('success', 'Compra realizada exitosamente.');
 
-        return redirect('/farmacia');
+        return redirect()->back();
+        // return redirect('/farmacia');
     }
 
     /**

@@ -5,11 +5,6 @@
     <meta charset="UTF-8">
     <title>Farmacia</title>
     <style>
-        :root {
-            --color-principal: #183B59;
-            --color-secundario: #348888;
-        }
-
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -17,7 +12,7 @@
         }
         .sidebar {
             width: 220px;
-            background: var(--color-principal);
+            background: #777;
             padding: 20px;
             height: 100vh;
             color: white;
@@ -26,14 +21,13 @@
             width: 100%;
             margin-bottom: 10px;
             padding: 10px;
-            background: var(--color-secundario);
+            background: #666;
             border: none;
             color: white;
             cursor: pointer;
-            transition: all 0.3s;
         }
         .sidebar button:hover {
-            background:rgb(37, 110, 110);
+            background: #555;
         }
         .content {
             flex: 1;
@@ -47,14 +41,14 @@
             margin-top: 20px;
         }
         .card {
-            background: #183B59;
+            background: #6e6e6e;
             color: white;
             padding: 15px;
             text-align: center;
             border-radius: 6px;
         }
         .card-img {
-            background:rgb(31, 70, 104);
+            background: #4d4d4d;
             height: 100px;
             margin-bottom: 10px;
             border-radius: 6px;
@@ -62,21 +56,21 @@
             align-items: center;
             justify-content: center;
         }
-        .card-img {
-            font-size: 40px;
+        .card-img::before {
+            content: "🖼️";
+            font-size: 30px;
         }
         .card a {
             display: block;
             margin-top: 10px;
             color: white;
             text-decoration: none;
-            background: var(--color-secundario);
+            background: #555;
             padding: 8px;
             border-radius: 4px;
-            transition: all 0.3s;
         }
         .card a:hover {
-            background: rgb(37, 110, 110);
+            background: #444;
         }
         .formulario-proveedor {
             display: flex;
@@ -87,14 +81,14 @@
         }
         .formulario-proveedor input {
             padding: 8px;
-            background: var(--color-principal);
+            background: #666;
             border: none;
             border-radius: 3px;
             color: white;
             width: 200px;
         }
         .formulario-proveedor button {
-            background: var(--color-secundario);
+            background: #666;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -107,31 +101,30 @@
         .tabla-proveedores {
             width: 90%;
             border-collapse: collapse;
-            background: #fff;
+            background: #ccc;
             margin-top: 20px;
         }
         .tabla-proveedores th,
         .tabla-proveedores td {
-            border: 2px solid var(--color-secundario);
+            border: 2px solid #888;
             padding: 10px;
             text-align: center;
         }
         .tabla-proveedores th {
-            background:rgba(6, 56, 82, 0.26);
+            background: #aaa;
             color: black;
         }
         .accion-btn {
-            background: var(--color-secundario);
+            background: #666;
             border: none;
             color: white;
             padding: 6px 10px;
             border-radius: 6px;
             margin: 0 2px;
             cursor: pointer;
-            transition: all 0.3s;
         }
         .accion-btn:hover {
-            background:rgb(32, 105, 105);
+            background: #444;
         }
         .formulario-container {
         max-width: 600px;
@@ -187,23 +180,22 @@
         }
         .formulario-proveedor-simple input {
             padding: 8px;
-            background: white;
-            border: 1px solid var(--color-secundario);
+            background: #666;
+            border: none;
             border-radius: 3px;
-            color: black;
+            color: white;
             width: 200px;
         }
         .formulario-proveedor-simple button {
-            background: var(--color-secundario);
+            background: #666;
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s;
         }
         .formulario-proveedor-simple button:hover {
-            background:rgb(38, 122, 122);
+            background: #444;
         }
         .formulario-container-ventas {
             max-width: 600px;
@@ -315,9 +307,7 @@
             gap: 20px;
             max-width: 900px;
             margin: 50px auto;
-            background-color: #333;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            color: white;
+            background-color: #fff;
             padding: 40px;
             border-radius: 10px;
         }
@@ -331,8 +321,7 @@
             width: 70%;
             padding: 12px;
             border: none;
-            background-color: #444;
-            /* border: 1px solid var(--color-secundario); */
+            background-color: #696666;
             color: white;
             border-radius: 6px;
             font-size: 16px;
@@ -344,7 +333,7 @@
             font-size: 16px;
             border: none;
             border-radius: 10px;
-            background-color: var(--color-secundario);
+            background-color: #696666;
             color: white;
             font-weight: bold;
             cursor: pointer;
@@ -371,44 +360,21 @@
             border: 1;
         }
 
-        #form-btn-salir {
-            text-align: center;
-        }
-
-        #btn-salir {
-            color: #fff;
-            background-color:rgb(255, 46, 46);
-            width: 70%;
-            margin: 30px auto;
-        }
-
     </style>
 </head>
 <body>
     <div class="sidebar">
         <div style="text-align: center; margin-bottom: 20px;">
             <div style="width: 100px; height: 100px; background: #666; border-radius: 50%; margin: auto;"></div>
-            <p style="text-align: center;">{{ $usuario }}</p>
+            <p style="text-align: center;">usuario</p>
         </div>
-
-        @if($usuario === 'admin')
-            <form action="/farmacia"><button>Inicio</button></form>
-            <form action="/proveedor"><button>Proveedores</button></form>
-            <form action="/compras"><button>Compras</button></form>
-            <form action="/ventas"><button>Ventas</button></form>
-            <form action="/listaVentas"><button>Lista Ventas</button></form>
-            <form action="/listaCompras"><button>Lista Compras</button></form>
-            <form action="/medicamentos"><button>Inventario</button></form>
-            <form id="form-btn-salir" action="/"><button id="btn-salir">Salir</button></form>
-        @else
-            <form action="/farmacia"><button>Inicio</button></form>
-            <form action="/ventas"><button>Ventas</button></form>
-            <form action="/listaVentas"><button>Lista Ventas</button></form>
-            <form action="/listaCompras"><button>Lista Compras</button></form>
-            <form action="/medicamentos"><button>Inventario</button></form>
-            <form id="form-btn-salir" action="/"><button id="btn-salir">Salir</button></form>
-        @endif
-
+        <!-- <form action="/farmacia"><button>Inicio</button></form> -->
+        <!-- <form action="/proveedor"><button>Proveedores</button></form> -->
+        <!-- <form action="/compras"><button>Compras</button></form> -->
+        <form action="/ventas"><button>Ventas</button></form>
+        <form action="/listaVentas"><button>Lista Ventas</button></form>
+        <!-- <form action="/listaCompras"><button>Lista Compras</button></form> -->
+        <form action="/medicamentos"><button>Inventario</button></form>
         <!-- <form action="/devolucion"><button>Devoluciones</button></form> -->
         <!--<form action="/inventario"><button>Inventario</button></form->--> 
     </div>

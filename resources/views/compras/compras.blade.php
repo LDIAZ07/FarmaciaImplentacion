@@ -62,7 +62,13 @@
             <input type="text" name="total" id="total" readonly>
         </div>
 
-        <button type="submit" class="boton-comprar">Guardar</button>
+            @if(session('success'))
+                <div class="alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+        <button type="submit" class="boton-comprar">Terminar Compra</button>
 
     </form>
 

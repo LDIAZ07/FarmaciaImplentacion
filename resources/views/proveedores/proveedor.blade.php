@@ -8,6 +8,12 @@
         <input type="email" name="email" placeholder="Correo electrónico">
         <input type="text" name="telefono" placeholder="Teléfono">
         <button type="submit">Agregar</button>
+        
+        @if(session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
     </form>
 
     <table class="tabla-proveedores">

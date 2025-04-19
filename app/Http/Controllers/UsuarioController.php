@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use App\Models\Proveedor;
+use App\Models\User;
+use App\Models\Devolucion;
+use App\Models\Venta;
+use App\Models\Compra;
+use App\Models\Medicamento;
 
 class UsuarioController extends Controller
 {
@@ -13,7 +20,6 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-
     }
 
     public function login(Request $request)
@@ -30,12 +36,26 @@ class UsuarioController extends Controller
         
                     // Obtener usuario autenticado
                     $user = Auth::user();
+                    $totalProveedores = Proveedor::count();
+                    $totalUsuarios = User::count();
+                    $totalDevoluciones = Devolucion::count();
+                    $totalVentas = Venta::count();
+                    $totalCompras = Compra::count();
+                    $totalMedicamentos = Medicamento::count();
+                    View::share('usuario', $user->rol);
         
                     // Redireccionar según el rol
                     if ($user->rol === 'admin') {
-                        return view('index');
+                        return view('index', compact(
+                            'totalProveedores',
+                            'totalUsuarios',
+                            'totalDevoluciones',
+                            'totalVentas',
+                            'totalCompras',
+                            'totalMedicamentos'
+                        ));
                     } elseif ($user->rol === 'empleado') {
-                        return view('indexUsuario');
+                        return view('index')->with('usuario', $user->rol);
                     } else {
                         return view('login.login');
                     }
