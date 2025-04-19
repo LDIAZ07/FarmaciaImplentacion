@@ -45,7 +45,7 @@ class UsuarioController extends Controller
                     View::share('usuario', $user->rol);
         
                     // Redireccionar según el rol
-                    if ($user->rol === 'admin') {
+                    if ($user->rol === 'admin' || $user->rol === 'empleado') {
                         return view('index', compact(
                             'totalProveedores',
                             'totalUsuarios',
@@ -54,9 +54,11 @@ class UsuarioController extends Controller
                             'totalCompras',
                             'totalMedicamentos'
                         ));
-                    } elseif ($user->rol === 'empleado') {
-                        return view('index')->with('usuario', $user->rol);
-                    } else {
+                    } 
+                    // elseif ($user->rol === 'empleado') {
+                    //     return view('index')->with('usuario', $user->rol);
+                    // } 
+                    else {
                         return view('login.login');
                     }
                 }
