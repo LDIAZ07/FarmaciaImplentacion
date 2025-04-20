@@ -18,9 +18,6 @@
         <label for="">Correo electronico</label>
         <input type="text" name="email" id="">
 
-        <!-- <label for="">Creado en</label>
-        <input type="text" name="creado_en" id=""> -->
-
         <button type="submit">Guardar</button>
 
     </form>

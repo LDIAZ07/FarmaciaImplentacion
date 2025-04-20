@@ -56,28 +56,19 @@
     const inputCantidad = document.getElementById('cantidad');
     const inputTotal = document.getElementById('total');
     const inputProveedorId = document.getElementById('proveedor_id');
-    // const inputMedicamentoStock = document.getElementById('stock_actual');
-    // const inputStockRestante = document.getElementById('stock_restante');
-    // const inputPrecio = document.getElementById('precio');
 
     function actualizarPrecioYTotal() {
         const selectedOption = selectProveedor.options[selectProveedor.selectedIndex];
         const precio = parseFloat(inputPrecio.value) || 0;
         const cantidad = parseInt(inputCantidad.value) || 0;
         const proveedorId = selectedOption.getAttribute('data-id') || "";
-        // const stock_actual = parseInt(selectedOption.getAttribute('data-stock')) || 0; 
 
-        // inputPrecio.value = precio.toFixed(2);
         inputTotal.value = (precio * cantidad).toFixed(2);
         inputProveedorId.value = proveedorId;
-        // inputMedicamentoStock.value = stock_actual;
-        // inputStockRestante.value = stock_actual - cantidad;
     }
 
-    // selectMedicamento.addEventListener('change', actualizarPrecioYTotal);
     inputCantidad.addEventListener('input', actualizarPrecioYTotal);
     inputPrecio.addEventListener('input', actualizarPrecioYTotal);
-    // window.addEventListener('DOMContentLoaded', actualizarPrecioYTotal);
     </script>
     
 </body>

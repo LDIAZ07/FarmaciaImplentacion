@@ -28,13 +28,11 @@ class ProveedoresController extends Controller
         $proveedores->nombre = $request->get('nombre');
         $proveedores->telefono = $request->get('telefono');
         $proveedores->email = $request->get('email');
-        // $proveedores->creado_en = $request->get('creado_en');
         $proveedores->save();
 
         session()->flash('success', 'Proveedor agregado correctamente.');
         return redirect()->back();
 
-        // return redirect('/farmacia');
     }
 
   
@@ -57,7 +55,6 @@ class ProveedoresController extends Controller
         $proveedores->nombre = $request->get('nombre');
         $proveedores->telefono = $request->get('telefono');
         $proveedores->email = $request->get('email');
-        // $proveedores->creado_en = $request->get('creado_en');
         $proveedores->save();
         return redirect('/proveedor');
     }

@@ -10,7 +10,7 @@
 
         <div>
             <label for="">Nombre del Medicamento</label>
-            <input type="text" name="nombre" id="">
+            <input type="text" name="nombre" id="nombre">
         </div>
 
         <div>
@@ -35,7 +35,6 @@
             <input type="text" name="presentacion" id="presentacion">
         </div>
 
-        <!--Funciona como stock actual-->
         <div>
             <label for="">Cantidad</label>
             <input type="number" name="cantidad" id="cantidad">
@@ -43,7 +42,7 @@
 
         <div>
             <label for="">Stock Minimos</label>
-            <input type="text" name="stock_minimo" id="stock_minimo">
+            <input type="number" name="stock_minimo" id="stock_minimo">
         </div>
 
 
@@ -54,7 +53,7 @@
 
         <div>
             <label for="">Fecha de Vencimiento</label>
-            <input type="text" name="fecha_vencimiento" id="fecha_vencimiento">
+            <input type="date" name="fecha_vencimiento" id="fecha_vencimiento">
         </div>
 
         <div>
@@ -68,171 +67,88 @@
                 </div>
             @endif
 
-        <button type="submit" class="boton-comprar">Terminar Compra</button>
+        <div class="formulario-ventas">
+            <button type="submit" class="boton-comprar" disabled>Terminar Compra</button>
+        </div>
+        
 
     </form>
 
     <script>
+    const btn = document.querySelector('.boton-comprar');
+
+    const inputs = {
+        nombre: document.getElementById('nombre'),
+        proveedor: document.getElementById('proveedor'),
+        principio: document.getElementById('principio_activo'),
+        presentacion: document.getElementById('presentacion'),
+        cantidad: document.getElementById('cantidad'),
+        stock: document.getElementById('stock_minimo'),
+        precio: document.getElementById('precio'),
+        fecha: document.getElementById('fecha_vencimiento'),
+    };
+
+    function validar() {
+    const nombre = inputs.nombre.value.trim();
+    const proveedor = inputs.proveedor.value;
+    const principio = inputs.principio.value.trim();
+    const presentacion = inputs.presentacion.value.trim();
+    const cantidad = parseInt(inputs.cantidad.value);
+    const stock = parseInt(inputs.stock.value);
+    const precio = parseFloat(inputs.precio.value);
+    const fechaStr = inputs.fecha.value.trim();
+
+    let fechaValida = false;
+    if (fechaStr !== "") {
+        const hoy = new Date();
+        const fechaIngresada = new Date(fechaStr);
+        fechaIngresada.setHours(0, 0, 0, 0);
+        hoy.setHours(0, 0, 0, 0);
+
+        fechaValida = fechaIngresada > hoy;
+    }
+
+    const valido = (
+        nombre !== "" &&
+        proveedor !== "" &&
+        principio !== "" &&
+        presentacion !== "" &&
+        !isNaN(cantidad) && cantidad > 0 &&
+        !isNaN(stock) && stock > 0 &&
+        !isNaN(precio) && precio > 0 &&
+        fechaValida
+    );
+
+    btn.disabled = !valido;
+}
+
     const selectProveedor = document.getElementById('proveedor');
     const inputPrecio = document.getElementById('precio');
     const inputCantidad = document.getElementById('cantidad');
     const inputTotal = document.getElementById('total');
     const inputProveedorId = document.getElementById('proveedor_id');
-    // const inputMedicamentoStock = document.getElementById('stock_actual');
-    // const inputStockRestante = document.getElementById('stock_restante');
-    // const inputPrecio = document.getElementById('precio');
 
     function actualizarPrecioYTotal() {
         const selectedOption = selectProveedor.options[selectProveedor.selectedIndex];
         const precio = parseFloat(inputPrecio.value) || 0;
         const cantidad = parseInt(inputCantidad.value) || 0;
-        const proveedorId = selectedOption.getAttribute('data-id') || "";
-        // const stock_actual = parseInt(selectedOption.getAttribute('data-stock')) || 0; 
+        const proveedorId = selectedOption.getAttribute('data-id') || ""; 
 
-        // inputPrecio.value = precio.toFixed(2);
         inputTotal.value = (precio * cantidad).toFixed(2);
         inputProveedorId.value = proveedorId;
-        // inputMedicamentoStock.value = stock_actual;
-        // inputStockRestante.value = stock_actual - cantidad;
     }
 
-    // selectMedicamento.addEventListener('change', actualizarPrecioYTotal);
     inputCantidad.addEventListener('input', actualizarPrecioYTotal);
     inputPrecio.addEventListener('input', actualizarPrecioYTotal);
     // window.addEventListener('DOMContentLoaded', actualizarPrecioYTotal);
+
+    Object.values(inputs).forEach(input => {
+        input.addEventListener('input', validar);
+        input.addEventListener('change', validar); // para el <select>
+    });
     </script>
-
-
-
-<!-- <form action="/compras" method="post" class="formulario-compras">
-    @csrf
-
-    <div>
-        <label for="codigo">Código?</label>
-        <input type="text" id="codigo" name="codigo">
-    </div>
-
-    <div>
-        <label for="proveedor">Nombre Proveedor</label>
-        <input type="text" id="proveedor" name="proveedor">
-    </div>
-
-    <div>
-        <label for="principio">Principio activo</label>
-        <select id="principio" name="principio">
-            <option value="">Seleccione...</option>
-        </select>
-    </div>
-
-    <div>
-        <label for="presentacion">Presentación</label>
-        <select id="presentacion" name="presentacion">
-            <option value="">Seleccione...</option>
-        </select>
-    </div>
-
-    <div>
-        <label for="precio_unitario">Precio unitario</label>
-        <input type="number" id="precio_unitario" name="precio_unitario" step="0.01">
-    </div>
-
-    <div>
-        <label for="cantidad">Cantidad</label>
-        <input type="number" id="cantidad" name="cantidad">
-    </div>
-
-    <div>
-        <label for="vencimiento">Fecha de vencimiento</label>
-        <input type="date" id="vencimiento" name="vencimiento">
-    </div>
-
-    <div>
-        <label for="precio_venta">Precio venta</label>
-        <input type="number" id="precio_venta" name="precio_venta" step="0.01">
-    </div>
-
-    <div>
-        <label for="total">Total</label>
-        <input type="text" id="total" name="total" readonly>
-    </div>
-
-    <button type="submit" class="boton-comprar">Comprar</button>
-</form> -->
-
-<!-- <button class="btn-lateral-compras">Comprar Producto Existente</button> -->
 
 <hr>
 
-<!-- <h2>Lista de Compras</h2>
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>ID Compra</th>
-            <th>Medicamento</th>
-            <th>Proveedor</th>
-            <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Total</th>
-            <th>Fecha</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($compras as $compra)
-            <tr>
-                <td>{{ $compra->id }}</td>
-                <td>{{ $compra->medicamento->nombre ?? 'N/A' }}</td>
-                <td>{{ $compra->proovedor->nombre ?? 'N/A' }}</td>
-                <td>{{ $compra->cantidad }}</td>
-                <td>{{ $compra->precio_unitario }}</td>
-                <td>${{ number_format($compra->cantidad * $compra->precio_unitario, 2) }}</td>
-                <td>{{ $compra->created_at->format('Y-m-d') }}</td>
-            </tr>
-        @endforeach
-    </tbody>
-</table> -->
 
 @endsection
-
-
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Compras</title>
-</head>
-<body>
-
-<h2>Lista de Compras</h2>
-    <table border="1" class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID Compra</th>
-                <th>Medicamento</th>
-                <th>Proveedor</th>
-                <th>Cantidad</th>
-                <th>Precio Unitario</th>
-                <th>Total</th>
-                <th>Fecha</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($compras as $compra)
-                <tr>
-                    <td>{{ $compra->id }}</td>
-                    <td>{{ $compra->medicamento->nombre ?? 'N/A' }}</td>
-                    <td>{{ $compra->proovedor->nombre ?? 'N/A' }}</td>
-                    <td>{{ $compra->cantidad }}</td>
-                    <td>{{ $compra->precio_unitario }}</td>
-                    <td>${{ number_format($compra->cantidad * $compra->precio_unitario, 2) }}</td>
-                    <td>{{ $compra->created_at->format('Y-m-d') }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    
-</body>
-</html>
--->

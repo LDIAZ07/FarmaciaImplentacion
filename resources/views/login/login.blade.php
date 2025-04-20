@@ -77,8 +77,11 @@
 
         <button type="submit">Iniciar Sesión</button>
 
-        @if(session('error'))
-            <div>{{ session('error') }}</div>
+
+        @if ($errors->has('error'))
+        <div class="alert alert-danger">
+            {{ $errors->first('error') }}
+        </div>
         @endif
     </form>
     

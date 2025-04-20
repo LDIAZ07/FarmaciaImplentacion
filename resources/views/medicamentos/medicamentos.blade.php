@@ -4,8 +4,6 @@
 
     <h1>Medicamentos</h1>
 
-    <!-- <h3><a href="/guardarMedicamento">Guardar Nuevo Medicamento</a></h3> -->
-
     <table class="table tabla-proveedores">
         <thead>
             <tr>

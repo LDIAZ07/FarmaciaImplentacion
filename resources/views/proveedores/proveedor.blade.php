@@ -4,10 +4,12 @@
     <h1>Proveedores</h1>
 
     <form action="/agregarProveedores" method="GET" class="formulario-proveedor-simple">
-        <input type="text" name="nombre" placeholder="Nombre del proveedor">
-        <input type="email" name="email" placeholder="Correo electrónico">
-        <input type="text" name="telefono" placeholder="Teléfono">
-        <button type="submit">Agregar</button>
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre del proveedor">
+        <input type="email" name="email" id="correo" placeholder="Correo electrónico">
+        <input type="number" name="telefono" id="telefono" placeholder="Teléfono">
+        <div class="formulario-ventas">
+            <button id="submit" type="submit" disabled>Agregar</button>
+        </div>
         
         @if(session('success'))
             <div class="alert-success">
@@ -39,49 +41,30 @@
             @endforeach
         </tbody>
     </table>
+
+    <script>
+    const inputNombre = document.getElementById('nombre');
+    const inputCorreo = document.getElementById('correo');
+    const inputTelefono = document.getElementById('telefono');
+
+        function validar() {
+        const telefono = parseInt(inputTelefono.value);
+
+        if (
+            inputNombre.value.trim() === "" ||
+            inputCorreo.value.trim() === "" ||
+            telefono.toString().length < 8
+        ) {
+            document.getElementById('submit').disabled = true;
+        } else {
+            document.getElementById('submit').disabled = false;
+        }
+    }
+
+    inputNombre.addEventListener('input', validar);
+    inputCorreo.addEventListener('input', validar);
+    inputTelefono.addEventListener('input', validar);
+    window.addEventListener('load', validar);
+</script>
 @endsection
-
-
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proveedores</title>
-</head>
-<body>
-
-    <h1>Proveedores</h1>
-
-    <h3><a href="/agregarProveedores">Agregar Nuevo</a></h3>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <td>Id</td>
-                <td>Nombre del Proveedor</td>
-                <td>Telefono</td>
-                <td>Correo electronico</td>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach ($lProveedores as $proveedores)
-
-                <tr>
-                    <td>{{$proveedores->id}}</td>
-                    <td>{{$proveedores->nombre}}</td>
-                    <td>{{$proveedores->telefono}}</td>
-                    <td>{{$proveedores->email}}</td>
-                    </tr>
-                   
-
-            @endforeach
-
-        </tbody>
-    </table>
-</body>
-</html>
--->
 

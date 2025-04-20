@@ -55,17 +55,16 @@ class UsuarioController extends Controller
                             'totalMedicamentos'
                         ));
                     } 
-                    // elseif ($user->rol === 'empleado') {
-                    //     return view('index')->with('usuario', $user->rol);
-                    // } 
                     else {
-                        return view('login.login');
+                        session()->flash('error', 'Credenciales incorrectas.');
+                        return redirect()->back();
+                        // return view('login.login');
                     }
                 }
         
                 // Si falla el login
                 return back()->withErrors([
-                    'email' => 'Las credenciales no coinciden con nuestros registros.',
+                    'error' => 'Las credenciales no coinciden con nuestros registros.',
                 ]);
     }
 

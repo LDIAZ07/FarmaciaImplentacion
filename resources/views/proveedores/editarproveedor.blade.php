@@ -5,7 +5,6 @@
     <form action="/updateProveedores/{{$proveedores->id}}" method="post" class="formulario-devolucion">
         @csrf
         @method('PUT')
-        <!-- <label for="">Id</label> -->
         <input type="text" name="id" id="" value="{{$proveedores->id}}" disabled hidden>
 
         <label for="">Nombre del Proveedor</label>
@@ -17,8 +16,6 @@
         <label for="">Correo electronico</label>
         <input type="text" name="email" id="" value="{{$proveedores->email}}">
 
-        <!-- <label for="">Creado en</label>
-        <input type="text" name="creado_en" id="" value="{{$proveedores->creado_en}}"> -->
 
         
         <button type="submit">Guardar</button>

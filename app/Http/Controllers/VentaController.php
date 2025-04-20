@@ -52,8 +52,6 @@ class VentaController extends Controller
 
         session()->flash('success', 'Venta realizada exitosamente.');
 
-        // session()->flash('error', 'Hubo un error al procesar la venta.');
-
         return redirect()->back();
     }
 
